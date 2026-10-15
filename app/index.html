@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regex Tester</title>
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="base.css">
+<style>
+  main{max-width:56rem}
+  .pattern{display:flex;align-items:center;gap:.25rem;font:15px ui-monospace,Menlo,Consolas,monospace;margin:.75rem 0 .5rem}
+  .pattern input{flex:1;min-width:0;font:inherit}
+  .pattern .slash{color:var(--muted);font-size:1.2rem}
+  .flags{display:flex;flex-wrap:wrap;gap:.75rem;font-size:.9rem}
+  .flags label{display:flex;gap:.25rem;align-items:center}
+  .wrap{position:relative;margin-top:.75rem}
+  textarea,.hl{width:100%;min-height:12rem;font:14px/1.6 ui-monospace,Menlo,Consolas,monospace;padding:.6rem;border-radius:.5rem;white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word}
+  .hl{position:absolute;inset:0;color:transparent;border:1px solid transparent;pointer-events:none;overflow:hidden}
+  .hl mark{background:color-mix(in srgb,#f2c94c 55%,transparent);color:transparent;border-radius:2px}
+  textarea{position:relative;background:transparent;resize:vertical;display:block}
+  .wrap::before{content:"";position:absolute;inset:0;background:var(--card);border-radius:.5rem}
+  .err{color:var(--bad);font-weight:600;min-height:1.4rem;margin:.4rem 0}
+  table{border-collapse:collapse;width:100%;font:13px ui-monospace,Menlo,Consolas,monospace;margin-top:.75rem}
+  td,th{border-bottom:1px solid var(--line);padding:.3rem .5rem;text-align:left;vertical-align:top}
+  th{color:var(--muted);font-weight:500;font-family:system-ui,sans-serif}
+</style>
+</head>
+<body>
+<main>
+  <h1>Regex Tester</h1>
+  <p class="sub">JavaScript regular expressions, highlighted live.</p>
+  <div class="pattern"><span class="slash">/</span><input id="re" value="\b(\w+)@(\w+)\.com\b" spellcheck="false" autocomplete="off" aria-label="Pattern"><span class="slash">/</span></div>
+  <div class="flags" id="flags"></div>
+  <p class="err" id="err" role="status"></p>
+  <div class="wrap"><div class="hl" id="hl" aria-hidden="true"></div><textarea id="text" spellcheck="false" aria-label="Test text">Write to ada@example.com or grace@navy.com.
+Not a match: someone@example.org</textarea></div>
+  <div class="stats"><span>Matches <b id="count">0</b></span></div>
+  <table><thead><tr><th>#</th><th>Match</th><th>Index</th><th>Groups</th></tr></thead><tbody id="rows"></tbody></table>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
